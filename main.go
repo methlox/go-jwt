@@ -1,19 +1,17 @@
 package main
 
 import (
-	routes "github.com/methlox/go-jwt/routes"
 	"os"
-	"log"
-	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 
+	"github.com/gin-gonic/gin"
+	routes "github.com/methlox/go-jwt/routes"
 )
 
 func main() {
 	port := os.Getenv("PORT")
 
-	if port==""{
-		port="8000"
+	if port == "" {
+		port = "8000"
 	}
 
 	router := gin.New()
@@ -22,12 +20,12 @@ func main() {
 	routes.AuthRoutes(router)
 	routes.UserRoutes(router)
 
-	router.GET("/api-1", func(c *gin.Context){
-		c.JSON(200, gin.H{"success":"Access granted for api-1"})
+	router.GET("/api-1", func(c *gin.Context) {
+		c.JSON(200, gin.H{"success": "Access granted for api-1"})
 	})
 
-	router.GET("/api-2", func(c *gin.Context){
-		c.JSON(200, gin.H{"success":"Access granted for api-2"})
+	router.GET("/api-2", func(c *gin.Context) {
+		c.JSON(200, gin.H{"success": "Access granted for api-2"})
 	})
 
 	router.Run(":" + port)
